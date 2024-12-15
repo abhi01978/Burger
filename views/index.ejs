@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .product-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            width: 200px;
+            text-decoration: none;
+            overflow: hidden;
+
+        }
+        .product-item img {
+            height:200px;
+            width:180px;
+            text-decoration: none;
+
+        }
+        .product-item p{
+            text-decoration: none;
+            padding-top: 3%;
+            font-size: 20px;
+            height: 20px;
+
+            
+        }
+        .product-item button{
+          border: hidden;
+          height: 30px;
+          width: 100px;
+          background-color: black;
+          color: white;
+        }
+        .message {
+            color: green;
+            font-weight: bold;
+            text-decoration: none;
+
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .nav1 a{
+          margin-left: 14%;
+          display: none;
+        }
+        .Banner{
+          background-image: url(/image/banne2.jpeg);
+          height: 400px;
+          width: 100%;
+          background-repeat:no-repeat;
+          background-size: cover;
+        }
+        .Banner2{
+          background-image: url(/image/banner.jpg);
+          height: 400px;
+          width: 100%;
+          background-repeat:no-repeat;
+          background-size: cover;
+        }
+        .text-banner{
+          margin-left: 7%;
+          padding: 130px;
+        }
+        .text-banner span{
+          font-size: 50px;
+        }
+        .text-banner p{
+          font-size: 20px;
+          margin-left: 10px;
+          color: red;
+        }
+
+        @media screen and (max-width:578px) {
+          .nav1 a{
+          margin-left: 1%;
+          display:inline-table;
+          text-decoration: none;
+          color: black;
+          font-size: 20px;
+          font-family:'Times New Roman', Times, serif;
+          padding-top:  10px;
+          height: 40px;
+          color: wheat;
+          
+        }
+        .nav1{
+          background-color: black;
+          color:white;
+          height: 60px;
+          width: 100%;
+
+
+        }
+        .navbar{
+          display: none;
+        }
+        .product-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding-top:  10px;
+            text-align: center;
+            width: 160px;
+            text-decoration: none;
+            overflow: hidden;
+
+        }
+        .product-item img {
+            height:150px;
+            width:140px;
+            text-decoration: none;
+            margin-right: 10px;
+
+        }
+        .Banner{
+          background-image: url(/image/banne2.jpeg);
+          height: 210px;
+          width: 100%;
+          background-repeat:no-repeat;
+          background-size: cover;
+        }
+        .Banner2{
+          background-image: url(/image/banner.jpg);
+          height: 220px;
+          width: 100%;
+          background-repeat:no-repeat;
+          background-size: cover;
+        }
+        .text-banner{
+          margin-left: 1%;
+          padding:  10%;;
+        }
+        .text-banner span{
+          font-size: 30px;
+        }
+        .text-banner p{
+          font-size: 20px;
+          margin-left: 0px;
+          color: red;
+        }
+
+          
+        }
+    </style>
+</head>
+<body>
+
+  <div class="nav1">
+    <nav>
+      <a href="/">
+        <img src="/image/bg5.jpg" height="50px" width="50px">
+      </a>
+      <a  href="/cart"> Cart</a>
+        <% if (user) { %>
+          <a href="/profile">Profile</a>
+          <a  style="color: yellow;">User.<%= user.username %>!</a>
+          <a  href="/logout">Logout</a>
+          <% } else { %>
+            <a  href="/login">Login</a>
+            
+            
+            <a href="/register">Register</a>
+            <% } %>
+            
+
+    
+    </nav>
+  </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">FOod<font color="blue">Hub</font></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/cart"> Cart</a>
+            </a>
+              </li>
+              
+              <li class="nav-item">
+                <% if (user) { %>
+                    <a class="nav-link active" href="/profile">View Profile </a>
+
+                
+            
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link active" href="/profile">View Profile </a>
+              </li> -->
+              <li class="nav-item">
+                <a  class="nav-link active"  style="color: red;">Welcome, <%= user.username %>!</a>
+              </li>
+              <li class="nav-item">
+                <% } else { %>
+                    <a class="nav-link active" href="/login">Login</a>
+
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/logout">Logout</a>
+              </li>
+              <li class="nav-item">
+                
+                <a class="nav-link active" href="/register">Register</a>
+                <% } %>
+
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>    
+    <!-- <% if (user) { %>
+        <p>Welcome, <%= user.username %>! <a href="/profile">View Profile</a></p>
+        <a href="/logout">Logout</a>
+    <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    <% } %> -->
+
+
+    <!-- <a href="/admin/add-product">add item</a> -->
+    <!-- Display message if exists -->
+
+
+    <section class="Banner">
+      <div class="text-banner">
+        <span> Best Food Hub</span>
+        <br>
+        
+        <span>TODAY'S
+        <FONT COLOR="orangered">Special</FONT> </span>
+        <br>
+        
+        <p>FAST FOOD</p>
+
+      </div>
+    </section>
+
+    <% if (message) { %>
+        <div class="message"><%= message %></div>
+    <% } %>
+
+    <div class="product-list">
+        <% products.forEach(product => { %>
+           <div class="product-item">
+                <a href="/product/<%= product.id %>" style="text-decoration: none;color: black;">
+                    <img src="<%= product.image %>">
+                    <p><%= product.name %></p>
+                </a>
+                
+                <p>Price: $<%= product.price %></p>
+                <form action="/cart/add/<%= product.id %>" method="POST" style="display:inline;">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+
+    <section class="Banner2">
+      <div class="text-banner">
+        <h2> Best Food Hub</h2>
+        
+        <span>TODAY'S
+        <FONT COLOR="orangered">Special</FONT> </span>
+        <br>
+        
+        <p>FAST FOOD</p>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+<i><b><h3><span>FOod<font color="blue">Hub</font></span></h3>
+</b></i>  
+  </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Company name
+          </h6>
+          <p>
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Burger</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Chilli</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Momose</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Pizza</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> NH-24 Road Village Ghaziabad (201001)</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            ac9303720@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> +918130287242</p>
+          <p><i class="fas fa-print me-3"></i> +918130287242</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2024 By Abhishek Full stack Developer:
+    <a class="text-reset fw-bold" href="https://shop012.netlify.app/">Ecommerce Site</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

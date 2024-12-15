@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %></title>
+    <style>
+        /* Optional: Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-decoration: none; /* Ensure no underline */
+        }
+       
+    </style>
+</head>
+<body>
+    <h1><%= product.name %></h1> <!-- Product name displayed without underline -->
+    <img src="<%= product.image %>" alt="<%= product.name %>" style="width:300px;height:300px;">
+    <p><strong>Price:</strong> $<%= product.price %></p>
+    <p><strong>Food Name_:</strong> <%= product.name %></p>
+    <a href="/">Back to Products</a>
+</body>
+</html>

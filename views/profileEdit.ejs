@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        .edit-form{
+            height: 200px;
+            width: 300px;
+            border: 1px solid black;
+        }
+        .edit-form label{
+            margin-left: 5%;
+        }
+        .edit-form input{
+            height: 30px;
+            width: 256px;
+            margin-left: 5%;
+            
+        }
+        .edit-form button{
+            margin-left: 20%;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } %>
+
+    <form action="/profile/update" method="POST">
+       <div class="edit-form">
+        <br>
+        <input type="text" name="username" value="<%= user.username %>" required>
+        <br>
+        <input type="email" name="email" value="<%= user.email %>" required>
+        
+        <br>
+        <input type="text" name="phone" value="<%= user.phone %>" required>
+        <br><br>
+        <button type="submit">Update Profile</button>
+       </div>
+    </form>
+
+    <a href="/profile">Back to Profile</a>
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+</body>
+</html>

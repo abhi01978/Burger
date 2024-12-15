@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+</head>
+<body>
+    <h1>Edit Product</h1>
+    
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } %>
+
+    <form action="/admin/edit-product/<%= product.id %>" method="POST">
+        <label for="name">Product Name:</label>
+        <input type="text" name="name" value="<%= product.name %>" required>
+        <label for="price">Price:</label>
+        <input type="number" name="price" step="0.01" value="<%= product.price %>" required>
+        <label for="image">Image URL:</label>
+        <input type="text" name="image" value="<%= product.image %>" required>
+        <label for="description">Description:</label>
+        <textarea name="description" required><%= product.description %></textarea>
+        <button type="submit">Update Product</button>
+    </form>
+
+    <a href="/admin/products">View All Products</a>
+    <a href="/">Home</a>
+</body>
+</html>

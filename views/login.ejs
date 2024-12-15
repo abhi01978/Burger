@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .s1{
+            background-image: url(./IMAGE/2.jpg);
+            background-repeat: no-repeat;
+            background-size:cover;
+            height: 500px;
+            width: 90%;
+        filter:saturate(20px);
+        padding-top: 10%;
+        }
+        .d1{
+            border: 2px solid black;
+            height: 420px;
+            width: 300px;
+            margin-left: 20px;
+           
+        backdrop-filter: blur(5px);
+       
+        align-content: center;
+        }
+        .text{
+            -webkit-box-reflect: below
+            1px linear-gradient(transparent, #0005);
+            box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 100px #03e9f4;
+
+        }
+        .text{
+            background-color: aqua;
+            border: hidden;
+            height: 50px;
+            width: 200px;
+        }
+        .s2{
+            background: linear-gradient(#a619f8,#00f2fe);
+            height: 600px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Form</h1>
+    <form action="/login" method="POST">
+        <!-- <label for="username">Username:</label>
+        <input type="text" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Login</button> -->
+
+
+
+        <section class="s1">
+            <center>  <div class="d1">
+              <label for=""  style="font-size: 20px;font-style:italic">Username</label><br><br>
+              <input placeholder="Username" name="username" 
+              style="background:fixed;border: 2px solid black;width: 80%;border-radius: 20px;height: 20px"><br><br>
+             
+              <label for="" style="font-size: 20px;font-style:italic">Password</label><br>
+              <input placeholder="Password"  name="password"
+              style="background:fixed;border: 2px 
+              solid black;width: 80%;border-radius: 20px;height: 20px"><br><br>
+              <br><br><br>
+             
+              <input type="Submit"  class="text"
+              style="background:fixed;border: 2px solid black;width: 40%;border-radius: 20px;height: 30px;"><br>
+             
+              </div></center>
+          </section>
+    </form>
+    <a href="/register">Don't have an account? Register here</a>
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } %>
+</body>
+</html>

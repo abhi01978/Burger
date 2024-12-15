@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <% if (cart && cart.length > 0) { %>
+        <ul>
+            <% cart.forEach(item => { %>
+                
+                    <img src="<%= item.image %>" alt="<%= item.name %>" style="width:100px;height:100px;">
+                    <br>
+                    <strong><%= item.name %></strong> - $<%= item.price %>
+                    <br>
+                    <form action="/cart/update/<%= item.id %>" method="POST" style="display:inline;">
+                        <input type="number" name="quantity" value="<%= item.quantity || 1 %>" min="1">
+                        <button type="submit">Update</button>
+                        
+                    </form><br>
+                    <br>
+                    <form action="/cart/delete/<%= item.id %>" method="POST" style="display:inline;">
+                        <button type="submit">Remove</button>
+                    </form>
+                    <br><br>
+                </li>
+            <% }) %>
+        </ul>
+        <p>Total Price: $<%= totalPrice %></p>
+    <% } else { %>
+        <p>Your cart is empty.</p>
+    <% } %>
+    <a href="/">Continue Shopping</a>
+    <a href="/logout">Logout</a>
+    <a href="/checkout">Checkout</a>
+</body>
+</html>
